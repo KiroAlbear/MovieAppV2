@@ -5,14 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.movieappv2.MainActivity">
-
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/dreammoviebackground"
+    android:id="@+id/background"
+    android:scaleType="centerCrop"
+    />
   <android.support.v7.widget.RecyclerView
       android:layout_width="match_parent"
       android:id="@+id/RV_myView"
       android:layout_height="match_parent"
-  >
 
 
-  </android.support.v7.widget.RecyclerView>
+ />
+
+
+
+
+
 
 </RelativeLayout>

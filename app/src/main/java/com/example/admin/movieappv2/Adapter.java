@@ -3,12 +3,7 @@ package com.example.admin.movieappv2;
 
 
              import android.content.Context;
-             import android.media.Image;
-             import android.net.Uri;
-             import android.support.v7.view.menu.MenuView;
              import android.support.v7.widget.RecyclerView;
-             import android.text.Layout;
-             import android.util.Log;
              import android.view.LayoutInflater;
              import android.view.View;
              import android.view.ViewGroup;
@@ -17,18 +12,15 @@ package com.example.admin.movieappv2;
 
              import com.squareup.picasso.Picasso;
 
-             import java.net.URI;
-             import java.net.URL;
-             import java.util.List;
-
+             import java.util.ArrayList;
 
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
-    List<Movie> mylist;
+    ArrayList<Movie> mylist;
     Context context;
 
-    public Adapter(List<Movie> list, Context context) {
+    public Adapter(ArrayList<Movie> list, Context context) {
         this.context = context;
         mylist = list;
 
@@ -45,8 +37,20 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     public void onBindViewHolder(Holder holder, int position) {
         // holder.imageView.setImageResource(R.drawable.trueimg);
         // holder.imageView.setImageURI(Uri.parse( "http://image.tmdb.org/t/p/w185/"+mylist.get(position).getImageUrl()));
-        Picasso.with(context).load("http://image.tmdb.org/t/p/w185" + mylist.get(position).getImageUrl()).into(holder.imageView);
-       // holder.TextView_name.setText(mylist.get(position).getName());
+
+          Picasso.with(context).load("http://image.tmdb.org/t/p/w185" + mylist.get(position).getImageUrl()).into(holder.imageView);
+          holder.TextView_name.setText(mylist.get(position).getName());
+
+
+
+
+//          Picasso.with(context).load("http://image.tmdb.org/t/p/w185" + mylist.get(position+1).getImageUrl()).into(holder.imageView_2);
+//          holder.TextView_name_2.setText(mylist.get(position).getName());
+
+
+
+//        position++;
+//
 
        // Log.v("tessssssst*** ", "http://image.tmdb.org/t/p/w185" + mylist.get(position).getImageUrl());
     }
@@ -64,13 +68,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         ImageView imageView;
         TextView TextView_name;
 
+        ImageView imageView_2;
+        TextView TextView_name_2;
 
         public Holder(View view) {
             super(view);
-            imageView = (ImageView) itemView.findViewById(R.id.IV_MyItem);
-            TextView_name = (TextView) itemView.findViewById(R.id.TV_MovieName);
+            imageView = (ImageView) itemView.findViewById(R.id.FirstMovieImage);
+            TextView_name = (TextView) itemView.findViewById(R.id.FirstMovieName);
 
 
+//            imageView_2= (ImageView) itemView.findViewById(R.id.SecotMovieImage);
+//            TextView_name_2= (TextView) itemView.findViewById(R.id.SecondtMovieName);
             //    imageView = itemView.findViewById(R.id.IV_poster);
             //  TextView_name = itemView.findViewById(R.id.TV_MovieName);
             // TextView_rate =itemView.findViewById(R.id.TV_MovieRateSec);

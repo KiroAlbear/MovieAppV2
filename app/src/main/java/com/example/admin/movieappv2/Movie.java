@@ -14,8 +14,6 @@ public class Movie {
     public String movie_id;
     public int popularity;
 
-    public Movie() {
-    }
 
     public void setRate(int rate) {Rate = rate;}
 
