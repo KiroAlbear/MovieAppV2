@@ -1,25 +1,31 @@
 package com.example.admin.movieappv2;
 
 
-
-import java.net.URL;
-
-
-
 public class Movie {
-    public int Rate;
-    public String Name;
-    public String description;
-    public String imageUrl;
-    public String movie_id;
+     int Rate;
+     String Name;
+     String overview;
+     String imageUrl;
+     String movie_id;
+    String release_date;
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
     public int popularity;
+
 
 
     public void setRate(int rate) {Rate = rate;}
 
     public void setName(String name) {Name = name;}
 
-    public void setDescription(String description) {this.description = description;}
+    public void setOverview(String overview) {this.overview = overview;}
 
     public void setImageUrl(String url) {imageUrl=url;}
 
@@ -33,8 +39,8 @@ public class Movie {
 
     public String getName() {return Name;}
 
-    public String getDescription() {
-        return description;
+    public String getOverview() {
+        return overview;
     }
 
     public String getImageUrl(){return imageUrl;}

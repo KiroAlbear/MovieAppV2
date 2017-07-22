@@ -1,15 +1,15 @@
 package com.example.admin.movieappv2;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.HorizontalScrollView;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     Adapter myadapter;
     RequestQueue requestQueue;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
         recyclerView = (RecyclerView) findViewById(R.id.RV_myView);
+        intent = new Intent(this, Main3Activity.class);
+        //startActivity(intent);
+        String TopRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=a2a6577bddba0b92a5bb9571adf4f098";
 
-        String urlServer = "https://api.themoviedb.org/3/movie/top_rated?api_key=a2a6577bddba0b92a5bb9571adf4f098";
-
-        volleyStringRquest(urlServer);
+        volleyStringRquest(TopRatedUrl);
 
 
         mylist = new ArrayList<>();
@@ -59,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         recyclerView.setAdapter(myadapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,1));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+
+
 
 
         // Toast toast = Toast.makeText(this, String.valueOf(mylist.size()),Toast.LENGTH_SHORT);
@@ -78,8 +83,12 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 Movie movie = new Movie();
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                movie.setMovie_id(jsonObject.getString("id"));
                                 movie.setName(jsonObject.getString("title"));
                                 movie.setImageUrl(jsonObject.getString("poster_path"));
+                                movie.setOverview(jsonObject.getString("overview"));
+                                movie.setRelease_date(jsonObject.getString("release_date"));
                                 mylist.add(movie);
                             }
                         } catch (JSONException e) {
@@ -101,27 +110,6 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void getaddedINFO() {
-        Movie movie = new Movie();
-      /*  movie.setName(ed_MovieName.getText().toString());
-        movie.setDescription(ed_MovieDescription.getText().toString());
-        movie.setRate(Integer.parseInt(ed_MovieRate.getText().toString()));
-        */
-        mylist.add(movie);
-        myadapter.notifyDataSetChanged();
-
-    }
-
-
-  /*  public void Showdata(View view){
-        Intent intent=new Intent(getApplicationContext(),SconedActivity.class);
-        TextView textView;
-        for(int i=0;i<3;i++) {
-            imageView = (ImageView)view.findViewById(R.id.IV_MyItem);
-            intent.putExtra("url", imageView.);
-            System.out.println(i+"  ="+textView.getText().toString()+"\n");
-        }
-        startActivity(intent);
-
-    }*/
 }
+
+
